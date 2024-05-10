@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+<context:property-placeholder location="classpath:db.properties"/>
+<!-- 해당 properties를 현재 폴더로 불러온다. -->
+	<bean id="db01" class="com.care.ex03.DBClass">
+		<property name="id" value="aaa"></property>
+		<property name="pwd" value="bbb"></property>
+	</bean>
+	
+	<bean id="db02" class="com.care.ex03.DBClass">
+		<constructor-arg value="${db.id}" />
+		<constructor-arg value="${db.pwd}" />
+		<property name="list">
+			<list>
+				<value>${db.id}</value>
+				<value>${db.pwd}</value>
+				<value>리스트 값 추가</value>
+			</list>
+		</property>
+		<property name="map">
+			<map>
+				<entry key="num1" value="map01"></entry>
+				<entry key="num2" value="map02"></entry>
+			</map>
+		</property>
+	</bean>
+	
+</beans>
