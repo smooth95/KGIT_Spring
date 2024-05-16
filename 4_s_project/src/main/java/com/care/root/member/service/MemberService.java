@@ -9,5 +9,6 @@ public interface MemberService {
 	public ArrayList<MemberDTO> getMember();
 	public ArrayList<MemberDTO> getUser(String id);
 	public void register(MemberDTO dto);
+	public void keepLogin(String id, String autoLogin);
 
 }

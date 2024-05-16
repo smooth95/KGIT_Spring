@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript" src="<%= request.getContextPath() %>/resources/js/daumPost.js"></script>
 </head>
 <body>
 <%@ include file="../default/header.jsp" %>
@@ -14,7 +16,10 @@
 		<form action="/root/member/registerChk" method="post">
 			<input type="text" name="id" placeholder="아이디"><br>
 			<input type="text" name="pw" placeholder="비밀번호"><br>
-			<input type="text" name="addr" placeholder="주 소"><br>
+			<input type="text" id="addr1" name="addr" readonly placeholder="우 편 번 호"><br>
+			<input type="text" id="addr2" name="addr" readonly placeholder="주 소"><br>
+			<input type="text" id="addr3" name="addr" placeholder="상 세 주 소">
+			<input type="button" onclick="daumPost()" value="우편번호검색"><br>
 			<input type="submit" value="회원가입">
 		</form>
 		

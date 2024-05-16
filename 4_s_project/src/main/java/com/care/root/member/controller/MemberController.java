@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -14,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.care.root.member.dto.MemberDTO;
 import com.care.root.member.service.MemberService;
@@ -24,6 +26,7 @@ public class MemberController {
 	
 	@GetMapping("index")
 	public String index() {
+		System.out.println("index 실행");
 		
 		return "default/main";
 	}
@@ -42,13 +45,20 @@ public class MemberController {
 	}
 	
 	@PostMapping("member/successChk")
-	public String successChk(@RequestParam String id, @RequestParam String pw, Model model, HttpServletRequest req) {
+	public String successChk(@RequestParam String id, @RequestParam String pw, Model model, HttpServletRequest req
+			, @RequestParam(required = false) String autoLogin, RedirectAttributes rs) {
+		System.out.println("login: " + autoLogin);
+		System.out.println("id : " + id);
 		ArrayList<MemberDTO> arr = new ArrayList<>();
 		arr = ms.loginChk(id, pw);
 		if (arr.size() != 0) {
 			if (arr.get(0).getPw().equals(pw)) {
+				System.out.println("실행1");
 				HttpSession session = req.getSession();
-				session.setAttribute("id", id);
+				rs.addAttribute("id", id);
+				rs.addAttribute("autoLogin", autoLogin);
+//				session.setAttribute("id", id);
+//				session.setAttribute("autoLogin", id);
 				return "redirect:successLogin";
 			} else {
 				return "redirect:login";
@@ -62,7 +72,19 @@ public class MemberController {
 	}
 	
 	@GetMapping("member/successLogin")
-	public String successLogin() {
+	public String successLogin(@RequestParam String id, @RequestParam(required = false) String autoLogin, HttpServletResponse res) {
+		System.out.println("login1 : " + autoLogin);
+		if (autoLogin != null) {
+			System.out.println("실행2");
+			int limitTime = 60 * 60 * 24 * 90;
+			Cookie cook = new Cookie("loginCookie", id);
+			cook.setPath("/");
+			cook.setMaxAge(limitTime);
+			res.addCookie(cook);
+			
+			ms.keepLogin( id, autoLogin );
+		}
+		
 		
 		return "member/successLogin";
 	}
@@ -96,8 +118,17 @@ public class MemberController {
 	}
 	
 	@PostMapping("member/registerChk")
-	public String registerChk(MemberDTO dto, Model model, HttpServletResponse res) throws IOException {
+	public String registerChk(MemberDTO dto, Model model, HttpServletResponse res, HttpServletRequest req) throws IOException {
 		ArrayList<MemberDTO> arr = new ArrayList<>();
+		
+		System.out.println("addr : " + dto.getAddr());
+		String [] addrs = req.getParameterValues("addr");
+		System.out.println(addrs[0]);
+		System.out.println(addrs[1]);
+		System.out.println(addrs[2]);
+		
+		
+		
 		arr = ms.getUser(dto.getId());
 		System.out.println("arr.size : " + arr.size());
 		if (arr.size() != 0) {

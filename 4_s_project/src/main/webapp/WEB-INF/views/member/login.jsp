@@ -26,6 +26,10 @@
 					<tr>
 						<td><input type="text" name="pw" placeholder="비밀번호"></td>
 					</tr>
+					<tr>
+						<td colspan="2"><input type="checkbox" name="autoLogin">
+						<label>자동 로그인</label>
+					</tr>
 				</tbody>
 			</table>
 			<a href="/root/member/register">회원가입</a>
