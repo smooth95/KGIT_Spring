@@ -21,6 +21,7 @@
 		<c:if test="${loginUser == null }">
 			<a href="${path }/member/login">LOGIN</a> &nbsp;&nbsp;
 		</c:if>
+		<a href="${path }/board/allList">게시판</a> &nbsp;&nbsp;
 	<hr>
 </body>
 </html>

@@ -163,9 +163,10 @@
 <!--      	 <Context docBase="4_test_jdbc" path="/root" reloadable="true" source="org.eclipse.jst.jee.server:4_test_jdbc"/>
        		<Context docBase="2_mvc_quiz" path="/member" reloadable="true" source="org.eclipse.jst.jee.server:2_mvc_quiz"/> -->
 <!--  		   <Context docBase="4_s_project" path="/root" reloadable="true" source="org.eclipse.jst.jee.server:4_s_project"/> -->
-<!-- 			<Context docBase="S_P" path="/root" reloadable="true" source="org.eclipse.jst.jee.server:S_P"/> -->
+			<Context docBase="S_P" path="/root" reloadable="true" source="org.eclipse.jst.jee.server:S_P"/>
 <!-- 			<Context docBase="6_file_email" path="/root" reloadable="true" source="org.eclipse.jst.jee.server:6_file_email"/> -->
-			<Context docBase="7_ajax" path="/root" reloadable="true" source="org.eclipse.jst.jee.server:7_ajax"/>
+<!-- 			<Context docBase="7_ajax" path="/root" reloadable="true" source="org.eclipse.jst.jee.server:7_ajax"/> -->
+<!-- 			<Context docBase="8_websocket" path="/root" reloadable="true" source="org.eclipse.jst.jee.server:8_websocket"/> -->
 			</Host> 
     </Engine>
   </Service>

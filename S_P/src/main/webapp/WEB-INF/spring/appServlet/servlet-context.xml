@@ -24,6 +24,7 @@
 	<context:component-scan base-package="com.care.root" />
 	
 	<beans:bean id="mi" class="com.care.root.interceptor.MemberInterceptor" />
+	<beans:bean id="bi" class="com.care.root.interceptor.BoardInterceptor" />
 	<beans:bean id="autoLogin" class="com.care.root.interceptor.AutoLogin" />
 	<interceptors>
 		<interceptor>
@@ -36,6 +37,10 @@
 			<mapping path="/member/memberInfo"/>
 			<mapping path="/member/info"/>
 			<beans:ref bean="mi"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/board/writeForm"/>
+			<beans:ref bean="bi"/>
 		</interceptor>
 
 	</interceptors>
