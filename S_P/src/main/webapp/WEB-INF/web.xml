@@ -50,7 +50,20 @@
 		<url-pattern>/*</url-pattern>                 
 	</filter-mapping> 
 	
-	<!-- 	꺽쇠 따옴표 등 문자 처리 -->
+	<!-- 멀티파트 필터링을 위한 설정 (Multipart에서 xss같은 기능 사용)
+		서버의 context.xml에서도 설정을 해야함.
+		18번째 줄 확인 
+		<Context allowCasualMultipartParsing="true" path="/"> -->
+	<filter>
+	    <filter-name>multipartFilter</filter-name>
+	    <filter-class>org.springframework.web.multipart.support.MultipartFilter</filter-class>
+	</filter>
+	<filter-mapping>
+	    <filter-name>multipartFilter</filter-name>
+	    <url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- Lucy 설정, 꺽쇠 따옴표 등 문자 처리 -->
 	<filter>
 	    <filter-name>xssEscapeServletFilter</filter-name>
 	    <filter-class>com.navercorp.lucy.security.xss.servletfilter.XssEscapeServletFilter</filter-class>
@@ -59,4 +72,6 @@
 	    <filter-name>xssEscapeServletFilter</filter-name>
 	    <url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	
 </web-app>

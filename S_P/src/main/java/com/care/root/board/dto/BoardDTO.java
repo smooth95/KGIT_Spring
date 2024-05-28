@@ -1,5 +1,8 @@
 package com.care.root.board.dto;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+
 public class BoardDTO {
 	int writeNo, hit;
 	String title, content, imageFileName, id, date;
@@ -42,8 +45,12 @@ public class BoardDTO {
 	public String getDate() {
 		return date;
 	}
-	public void setDate(String date) {
-		this.date = date;
+//	public void setDate(String date) {
+//		this.date = date;
+//	}
+	public void setDate(Timestamp time) {
+		SimpleDateFormat f = new SimpleDateFormat("YYYY년 MM월 dd일 HH시 mm분 ss초");
+		this.date = f.format(time);
 	}
 	
 	

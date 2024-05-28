@@ -27,7 +27,7 @@
 <div>
 	<form action="writeSave" method="post" enctype="multipart/form-data">
 		<b>작성자</b><br>
-		<input type="text" name="id">
+		<input type="text" name="id" value="${loginUser }" readOnly>
 		<hr>
 		<b>제목</b><br>
 		<input type="text" name="title">

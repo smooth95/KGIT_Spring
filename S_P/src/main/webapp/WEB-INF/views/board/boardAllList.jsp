@@ -30,7 +30,8 @@
 				<tr>
 					<td>${list.getWriteNo()}</td>
 					<td>${list.getId()}</td>
-					<td>${list.getTitle()}</td>
+					<td>
+					<a href="contentView?writeNo=${list.getWriteNo() }">${list.getTitle()}</a></td>
 					<td>${list.getDate()}</td>
 					<td>${list.getHit()}</td>
 					<td>${list.getImageFileName()}</td>
@@ -40,7 +41,11 @@
 	</c:choose>
 	
 	<tr>
-		<td colspan="7"><a href="writeForm">글작성</a></td>
+		<td colspan="6" align="right">
+		<c:forEach var="num" begin="1" end="${repeat }">
+			<a href="allList?start=${num}">${num}</a> &nbsp;
+		</c:forEach>
+		<a href="writeForm">글작성</a></td>
 	</tr>
 	
 </table>
