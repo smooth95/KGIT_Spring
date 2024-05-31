@@ -20,6 +20,13 @@
 
 		var map = new naver.maps.Map('map', mapOptions);
 	</script>
+	
+	시간 : ${serverTime}<br>
+	시간 : ${sessionScope.time}<br>
+	시간 : ${sessionScope.times}<br>
+	이름 : ${userName }<br>
+	
+	<a href="/root"> 홈으로 </a>
 </body>
 </html>
 
